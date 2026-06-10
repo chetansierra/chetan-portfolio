@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { profile } from '../content'
+import { ThemeToggle } from './ThemeToggle'
 
 const links = [
   { label: 'Home', to: '/' },
@@ -39,12 +40,15 @@ export function Nav() {
           ))}
         </nav>
 
-        <a
-          href={`mailto:${profile.email}`}
-          className="btn btn-primary hidden sm:inline-flex"
-        >
-          Get in touch
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <a
+            href={`mailto:${profile.email}`}
+            className="btn btn-primary hidden sm:inline-flex"
+          >
+            Get in touch
+          </a>
+        </div>
       </div>
     </header>
   )

@@ -3,13 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /*
-  ── 3-color system ──────────────────────────────────────────
-  Only three real colors live here:
-    --bg      deep green-black background
-    --text    near-white text
-    --accent  one contrasty green, for things that must grab attention
-  Everything else (muted text, borders, surfaces) is one of those
-  three at reduced opacity or a hair-shifted shade — no new hues.
+  ── Color system ────────────────────────────────────────────
+  Two themes, same three roles. Switch via  <html data-theme="…">.
+    --bg          page background
+    --text        primary text
+    --accent      the one contrasty colour (buttons, highlights)
+    --accent-ink  text that sits ON an accent fill (e.g. button labels)
+  Everything else (muted / faint / border / surface) is one of those
+  at reduced opacity or a hair-shifted shade — no new hues.
+
+  DARK is the default (lives in :root). LIGHT overrides via
+  :root[data-theme="light"]. Dark values are intentionally untouched.
 */
 :root {
     color-scheme: dark;
@@ -17,18 +21,36 @@
     --bg: #0a0f0d;
     --text: #eef3f0;
     --accent: #57e3a3;
+    --accent-ink: #04130c;
 
-    /* derived — same family, opacity/shade only */
     --surface: #0e1512;
     --muted: rgba(238, 243, 240, 0.58);
     --faint: rgba(238, 243, 240, 0.38);
     --border: rgba(238, 243, 240, 0.10);
     --border-strong: rgba(238, 243, 240, 0.20);
     --accent-soft: rgba(87, 227, 163, 0.10);
+    --dot: rgba(238, 243, 240, 0.05);
 
-    /* sharp, not round */
     --radius: 4px;
     --radius-sm: 2px;
+}
+
+/* ── Light theme — warm ivory + deep-emerald accent ──────────── */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --bg: #f4f0e3;          /* warm ivory, subtle yellow tint (not white) */
+    --text: #18231e;        /* deep green-ink */
+    --accent: #0c7a52;      /* deep emerald — contrasty on ivory */
+    --accent-ink: #f7f4ea;  /* light text on accent fills */
+
+    --surface: #fbf8f0;     /* lifted card — creamy near-white */
+    --muted: rgba(24, 35, 30, 0.64);
+    --faint: rgba(24, 35, 30, 0.46);
+    --border: rgba(24, 35, 30, 0.12);
+    --border-strong: rgba(24, 35, 30, 0.24);
+    --accent-soft: rgba(12, 122, 82, 0.10);
+    --dot: rgba(24, 35, 30, 0.07);
 }
 
 * {
@@ -47,6 +69,7 @@ body {
     font-family: 'Space Grotesk', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition: background-color 220ms ease, color 220ms ease;
 }
 
 h1, h2, h3, h4 {
@@ -58,14 +81,14 @@ h1, h2, h3, h4 {
 
 ::selection {
     background: var(--accent);
-    color: #04130c;
+    color: var(--accent-ink);
 }
 
-/* faint dot grid — texture without adding a color */
+/* faint dot grid — texture without adding a colour */
 .dot-grid {
     position: fixed;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(238, 243, 240, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
     background-size: 44px 44px;
     pointer-events: none;
     z-index: 0;
@@ -128,7 +151,7 @@ h1, h2, h3, h4 {
 
     .btn-primary {
         background: var(--accent);
-        color: #04130c;
+        color: var(--accent-ink);
         border: 1px solid var(--accent);
     }
 
