@@ -7,87 +7,94 @@
 
 export const profile = {
   name: 'Chetan',
-  role: 'Software Engineer',
-  tagline:
-    'I build systems that move money and stay standing through market spikes — and over-engineer side projects for the fun of it.',
-  location: 'India', // TODO: confirm city
+  fullName: 'Chetan Sharma',
   email: 'chetansierra@gmail.com',
+  resumeUrl: '/Chetan_Sharma_Resume.pdf',
   socials: [
-    { label: 'GitHub', href: 'https://github.com/chetansierra' }, // TODO: confirm handle
-    { label: 'LinkedIn', href: '#' }, // TODO: add LinkedIn URL
+    { label: 'GitHub', href: 'https://github.com/chetansierra' },
+    { label: 'LinkedIn', href: '#' }, // TODO: add your LinkedIn URL
     { label: 'Email', href: 'mailto:chetansierra@gmail.com' },
   ],
 }
 
-export const about = {
-  // Voice carried over from your original site copy.
-  paragraphs: [
-    "I'm a software engineer who likes learning things properly — building to understand, revisiting ideas, and paying attention to the details that compound over time.",
-    'For four years at Citibank I worked on the systems behind cross-border payments: high-availability services processing hundreds of thousands of transactions a day, in the moments that matter most.',
-    'Outside the day job I over-engineer things on purpose. The learning is always the point.',
-  ],
-  interests: [
-    'Distributed systems',
-    'Event-driven architecture',
-    'Reliability & performance',
-    'Developer tooling',
-    // TODO: add personal interests (music, sport, reading, travel, ...)
+// ── Home (/) — single, no-scroll big-picture page ─────────────────
+export const home = {
+  welcome: 'welcome to my corner of the internet',
+  greeting: "Hi, I'm Chetan",
+  purpose: [
+    "This is where I capture what I'm into: the learning, the building, the little experiments I run on myself. I leave it all out for anyone curious enough to look.",
+    "Some of it's work. Most of it isn't.",
   ],
 }
 
-export const projects = [
-  {
-    name: 'System Design Arena',
-    blurb:
-      'An interactive system-design quiz — answer under a timer, rack up a score, climb the board. Built as a playground to learn a full Go + gRPC backend end to end.',
-    stack: ['Go', 'gRPC', 'PostgreSQL', 'React'],
-    note: 'The predecessor to this very site.',
-  },
-  {
-    name: 'Smart City Environmental Monitor',
-    blurb:
-      'Event-driven platform that ingests streaming sensor data and serves a live map with real-time WebSocket updates, packaged for Kubernetes.',
-    stack: ['Go', 'Kafka', 'Redis', 'PostgreSQL', 'React'],
-    note: 'Jun 2025',
-  },
-  // TODO: add more projects here
-]
-
-export const experience = [
-  {
-    role: 'Software Engineer II',
-    org: 'Citibank',
-    team: 'Trade & Treasury Tech — Mass Payments Platform (APAC)',
-    period: 'Aug 2022 – Dec 2025',
-    points: [
-      'Designed and shipped a regulatory-compliance system in Java/Spring Boot handling 200K+ daily transactions during peak market events.',
-      'Led CI/CD modernization with reusable Tekton/Harness pipeline templates across 8 APAC environments, cutting release prep ~50%.',
-      'Re-engineered 10K+ lines of legacy SQL and shell scripts into maintainable Java microservices.',
-    ],
-  },
-  {
-    role: 'Software Engineer I',
-    org: 'Citibank',
-    team: '',
-    period: 'Jul 2021 – Aug 2022',
-    points: [
-      'Built a React/TypeScript operations dashboard used by 2,000+ users to trigger and monitor automation workflows in real time.',
-      'Directed Java upgrades across 30 microservices; deployed on OpenShift with Helm.',
-    ],
-  },
-]
-
-export const education = {
-  school: 'BITS Pilani',
-  degree: 'B.E. Computer Science',
-  period: '2017 – 2021',
+// ── Otherwise (/otherwise) — the "other than work" feed ───────────
+// A flexible collection: anything goes — a book, a diet you tried, a
+// trip, a thing you're running, a rabbit hole. Each entry has a `kind`
+// label, a title, and a blurb. Add/remove freely.
+export const otherwise = {
+  intro:
+    "A running list of whatever I'm into lately — things I read, try, make, or fall down a rabbit hole on. Some of it sticks, some doesn't. It all ends up here.",
+  entries: [
+    { kind: 'Reading', title: 'A book or idea that stuck', blurb: 'Placeholder — a philosophy, essay, or book you keep coming back to.' },
+    { kind: 'Experiment', title: 'A month of trying something', blurb: 'Placeholder — that diet / habit / challenge you ran for a month.' },
+    { kind: 'Currently', title: "Something I'm building", blurb: "Placeholder — a thing you're running or making right now." },
+    { kind: 'Trip', title: 'Somewhere I went', blurb: "Placeholder — a trip you took, or one you're planning." },
+    { kind: 'Rabbit hole', title: 'My latest obsession', blurb: 'Placeholder — a topic you got weirdly deep into recently.' },
+  ],
 }
 
-export const coCurriculars = [
-  {
-    title: 'Learning Loop',
-    blurb:
-      'Started a peer-mentoring initiative and authored AI-assisted migration guidelines that were adopted as standard practice across a 150+ engineer group.',
-  },
-  // TODO: add clubs, sport, volunteering, writing, talks, etc.
-]
+// ── Work (/work) — two blocks (at work + for fun), then the game ───
+// `what` lines are pulled from Chetan's résumé (factual).
+// `loved` lines are a DRAFT of the voice — make them yours. // TODO
+export const work = {
+  intro:
+    "The professional corner. I build backend systems for things that can't afford to break — and I care about the people building alongside me as much as the thing we're building.",
+  atWork: [
+    {
+      title: 'Cross-border payments, at scale',
+      what:
+        "Built the systems behind APAC mass payments — a high-availability, regulation-compliant platform in Java and Spring Boot handling 200K+ transactions a day, including during the market's busiest, most fragile moments.",
+      loved:
+        "The stakes. When money has to move correctly during a market spike, 'retry later' isn't an option — designing for that kind of reliability is a different game.",
+      stack: ['Java', 'Spring Boot', 'PostgreSQL'],
+    },
+    {
+      title: 'Making deploys forgettable',
+      what:
+        'Rebuilt how 8 APAC environments ship — reusable Tekton and Harness pipeline templates with Ansible, replacing an ageing TeamCity/UDeploy setup. Release prep dropped by around half.',
+      loved:
+        'Taking friction away from other engineers. A good pipeline is invisible; you only notice it when it bites. Making deployments boring was the whole point.',
+      stack: ['Tekton', 'Harness', 'Ansible', 'OpenShift'],
+    },
+    {
+      title: 'Giving legacy code a second life',
+      what:
+        'Untangled 10K+ lines of legacy SQL and shell scripts into clean Java microservices with proper REST APIs.',
+      loved:
+        'The archaeology — working out what a decade-old script actually does, then turning it into something a human can comfortably maintain.',
+      stack: ['Java', 'SQL', 'Microservices'],
+    },
+  ],
+  sideProjects: [
+    {
+      title: 'System Design Arena',
+      what:
+        'An interactive system-design quiz — answer under a timer, rack up a score, climb the board. A full Go + gRPC + Postgres backend, built end to end.',
+      loved: 'Over-engineering it on purpose, just to learn the whole stack properly. The predecessor to this very site.',
+      stack: ['Go', 'gRPC', 'PostgreSQL', 'React'],
+    },
+    {
+      title: 'Smart City Environmental Monitor',
+      what:
+        'An event-driven platform that ingests streaming sensor data and serves a live map with real-time updates, packaged for Kubernetes.',
+      loved: 'Watching data flow through Kafka and land on a live map never quite got old.',
+      stack: ['Go', 'Kafka', 'Redis', 'PostgreSQL'],
+    },
+    {
+      title: 'This site',
+      what: "The one you're on — a deliberately lightweight, static personal site. No backend, no clutter.",
+      loved: 'Stripping a heavier idea down to something fast and simple — and getting to keep tweaking it.',
+      stack: ['React', 'Vite', 'TypeScript'],
+    },
+  ],
+}

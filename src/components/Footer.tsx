@@ -3,18 +3,20 @@ import { profile } from '../content'
 export function Footer() {
   return (
     <footer
-      className="max-w-5xl mx-auto px-6 py-16"
+      className="max-w-5xl mx-auto w-full px-6 py-16"
       style={{ borderTop: '1px solid var(--border)' }}
     >
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-semibold">
-            {profile.name}
-            <span className="text-accent">.</span>
-          </p>
-          <p className="mt-2 mono text-xs text-faint">
-            Built lightweight — no tracking, no clutter.
-          </p>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            Résumé ↗
+          </a>
+          <p className="mt-3 mono text-xs text-faint">The short version of all this.</p>
         </div>
 
         <div className="flex items-center gap-5 text-sm">
@@ -25,6 +27,8 @@ export function Footer() {
           ))}
         </div>
       </div>
+
+      <p className="mt-10 mono text-xs text-faint">© {profile.fullName} — built lightweight.</p>
     </footer>
   )
 }

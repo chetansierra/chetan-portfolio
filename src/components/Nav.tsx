@@ -1,10 +1,10 @@
+import { NavLink } from 'react-router-dom'
 import { profile } from '../content'
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Game', href: '#game' },
+  { label: 'Home', to: '/' },
+  { label: 'Otherwise', to: '/otherwise' },
+  { label: 'Work', to: '/work' },
 ]
 
 export function Nav() {
@@ -17,24 +17,32 @@ export function Nav() {
       }}
     >
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="text-[15px] font-semibold tracking-tight">
+        <NavLink to="/" className="text-[15px] font-semibold tracking-tight">
           {profile.name}
           <span className="text-accent">.</span>
-        </a>
+        </NavLink>
 
-        <nav className="hidden sm:flex items-center gap-8 text-sm text-muted">
+        <nav className="flex items-center gap-6 sm:gap-8 text-sm">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="hover:text-[var(--text)] transition-colors"
+            <NavLink
+              key={l.to}
+              to={l.to}
+              end={l.to === '/'}
+              className={({ isActive }) =>
+                `transition-colors ${
+                  isActive ? 'text-accent' : 'text-muted hover:text-[var(--text)]'
+                }`
+              }
             >
               {l.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
-        <a href={`mailto:${profile.email}`} className="btn btn-primary">
+        <a
+          href={`mailto:${profile.email}`}
+          className="btn btn-primary hidden sm:inline-flex"
+        >
           Get in touch
         </a>
       </div>
